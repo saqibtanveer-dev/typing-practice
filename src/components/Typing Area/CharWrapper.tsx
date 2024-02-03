@@ -71,11 +71,11 @@ export default function CharWrapper({
   }, [index, setIndex]);
 
   return (
-    <div className="max-w-3xl w-fit h-fit mx-auto dark:bg-black dark:text-gray-500 border-red-500 border mt-[30%]">
+    <>
       {chars &&
         chars.map((char, i) => (
           <Char id={i + char} key={char + i} char={char} />
         ))}
-    </div>
+    </>
   );
 }
