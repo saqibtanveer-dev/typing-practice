@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 
 export function generateRandomPara(n) {
-  return "Proin a tortor eu neque eleifend eleifend. Nunc facilisis quam in dui egestas, ut dapibus nisl finibus";
+  return faker.word.words(n);
 }
 
 export function checkKey(enteredKey, actualKey) {
