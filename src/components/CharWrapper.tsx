@@ -22,8 +22,8 @@ export default function CharWrapper({
     const handleKeyDownEvent = (e: KeyboardEvent) => {
       e.preventDefault();
 
-      // const isAllowed = isKeyAllowed(e.key);
-      // if (!isAllowed) return;
+      const isAllowed = isKeyAllowed(e.code);
+      if (!isAllowed) return;
 
       // remove classes from past span
       removeClasses(index - 1 + chars[index - 1], [

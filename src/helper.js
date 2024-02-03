@@ -26,12 +26,13 @@ export function removeClasses(elementId, classes) {
   }
 }
 
-export function isKeyAllowed(key) {
-  if (/^[a-zA-Z]+$/.test(key)) {
-    console.log("right vlue");
-    return true;
-  }
-  return false;
+export function isKeyAllowed(code) {
+  return (
+    code === "Backspace" ||
+    code.startsWith("Key") ||
+    code === "Space" ||
+    code === "Minus"
+  );
 }
 
 export function handleBackSpace(currentElementId, pastElementId) {
