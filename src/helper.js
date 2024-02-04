@@ -31,7 +31,8 @@ export function isKeyAllowed(code) {
     code === "Backspace" ||
     code.startsWith("Key") ||
     code === "Space" ||
-    code === "Minus"
+    code === "Minus" ||
+    code === "Semicolon"
   );
 }
 
