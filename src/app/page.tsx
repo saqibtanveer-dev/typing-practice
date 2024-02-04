@@ -1,10 +1,10 @@
-import Char from "@/components/Typing Area/Char";
+import Char from "@/components/TypingArea/Char";
 import { generateRandomPara } from "../helper";
 import dynamic from "next/dynamic";
 import React, { Suspense } from "react";
 
 const CharsContainer = dynamic(
-  () => import("@/components/Typing Area/CharsContainer"),
+  () => import("@/components/TypingArea/CharsContainer"),
   {
     ssr: false,
   }

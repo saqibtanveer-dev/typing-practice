@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Aside from "@/components/Aside";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,8 +17,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={"dark:bg-black h-screen" + inter.className}>
-        {children}
+      <body className={"dark:bg-bg-primary h-screen " + inter.className}>
+        {/* header */}
+
+        {/* main */}
+        <main className="h-full max-w-7xl mx-auto flex items-start justify-center gap-primary">
+          {/* section */}
+          <section className="flex-1 h-full p-8">{children}</section>
+
+          {/* aside */}
+          <aside className="w-[416px] h-full p-8">
+            <Aside />
+          </aside>
+        </main>
       </body>
     </html>
   );

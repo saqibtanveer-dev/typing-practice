@@ -2,7 +2,7 @@ import React from "react";
 import dynamic from "next/dynamic";
 import LessonNotAvailable from "@/components/LessonNotAvailable";
 const CharsContainer = dynamic(
-  () => import("@/components/Typing Area/CharsContainer"),
+  () => import("@/components/TypingArea/CharsContainer"),
   {
     ssr: false,
   }
