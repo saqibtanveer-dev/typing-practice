@@ -7,15 +7,14 @@ const CharsContainer = dynamic(
     ssr: false,
   }
 );
-import { lessons } from "@/data/lessonsData";
+import { genRandWordsFromStr } from "@/helper";
+import { lessonsList } from "@/data/lessonsList";
 
 export default function page({ params }: { params: { slug: string } }) {
   const { slug } = params;
-  let chars;
-  try {
-    chars = lessons[parseInt(slug)].split("");
-  } catch (error) {
-    return <LessonNotAvailable />;
-  }
+  const letters = lessonsList[parseInt(slug)].letters;
+  const para = genRandWordsFromStr(letters, 50, 5);
+  const chars = para.split("");
+  console.log(chars);
   return <CharsContainer chars={chars} />;
 }

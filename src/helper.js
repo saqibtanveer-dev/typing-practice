@@ -4,6 +4,31 @@ export function generateRandomPara(n) {
   return faker.word.words(n);
 }
 
+export function genRandWordsFromStr(string, n, maxWord) {
+  let words = "";
+  for (let i = 0; i < n; i++) {
+    let randNum = genRandNum(maxWord + 1);
+    if (randNum === 0) randNum = 1;
+    const word = takeLetters(randNum);
+    words += `${word} `;
+  }
+
+  function takeLetters(n) {
+    let str = "";
+    for (let i = 0; i < n; i++) {
+      const randNum = genRandNum(string.length);
+      str += string[randNum];
+    }
+    return str;
+  }
+
+  function genRandNum(n) {
+    return Math.floor(Math.random() * n);
+  }
+
+  return words;
+}
+
 export function checkKey(enteredKey, actualKey) {
   if (enteredKey === actualKey) return true;
   return false;

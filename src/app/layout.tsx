@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Aside from "@/components/Aside";
+import Header from "@/components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className={"dark:bg-bg-primary h-screen " + inter.className}>
         {/* header */}
+        <Header />
 
         {/* main */}
         <main className="h-full max-w-7xl mx-auto flex items-start justify-center gap-primary">
