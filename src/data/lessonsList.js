@@ -1,64 +1,48 @@
+import { genRandWordsFromStr } from "@/helper";
+import { faker } from "@faker-js/faker";
+
 export const lessonsList = [
   {
     number: 0,
     name: "Home Row",
     description: "Learn the keys on the home row.",
-    letters: "asdfghjkl;",
+    letters: genRandWordsFromStr("asdfghjkl;", 50, 5),
   },
   {
     number: 1,
     name: "Top Row",
     description: "Practice typing on the top row.",
-    letters: "qwertyuiop",
+    letters: genRandWordsFromStr("qwertyuiop;", 50, 5),
   },
   {
     number: 2,
     name: "Bottom Row",
     description: "Focus on typing keys on the bottom row.",
-    letters: "zxcvbnm",
+    letters: genRandWordsFromStr("zxcvbnm;", 50, 5),
   },
   {
     number: 3,
     name: "Common Letter Combinations",
     description: "Practice common combinations of letters.",
-    letters: "qwertyuiop",
+    letters: genRandWordsFromStr("asdfghjkl;", 50, 5),
   },
   {
     number: 4,
     name: "Common Words",
     description: "Type frequently used words for better",
-    letters: "qwertyuiop",
+    letters: faker.word.words(30),
   },
   {
     number: 5,
     name: "Sentences",
     description: "Construct sentences to enhance typing speed",
-    letters: "qwertyuiop",
+    letters: faker.lorem.sentences(),
   },
   {
     number: 6,
-    name: "Punctuation and Numbers",
+    name: "Punctuation",
     description:
       "Include punctuation and numeric characters in typing practice.",
-    letters: "qwertyuiop",
-  },
-  {
-    number: 7,
-    name: "Coding Syntax",
-    description:
-      "Learn to type common coding syntax and programming constructs.",
-    letters: "qwertyuiop",
-  },
-  {
-    number: 8,
-    name: "Advanced Sentences",
-    description: "Challenge yourself with more complex",
-    letters: "qwertyuiop",
-  },
-  {
-    number: 9,
-    name: "Special Characters and Symbols",
-    description: "Practice typing special characters and",
-    letters: "qwertyuiop",
+    letters: genRandWordsFromStr("!@#$%^&*:;'|?/,", 50, 5),
   },
 ];

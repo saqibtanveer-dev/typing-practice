@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 
-export function generateRandomPara(n) {
-  return faker.word.words(n);
+export function generateRandomPara() {
+  return faker.lorem.paragraph();
 }
 
 export function genRandWordsFromStr(string, n, maxWord) {

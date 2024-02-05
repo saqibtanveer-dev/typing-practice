@@ -12,8 +12,7 @@ import { lessonsList } from "@/data/lessonsList";
 
 export default function page({ params }: { params: { slug: string } }) {
   const { slug } = params;
-  const letters = lessonsList[parseInt(slug)].letters;
-  const para = genRandWordsFromStr(letters, 50, 5);
+  const para = lessonsList[parseInt(slug)].letters;
   const chars = para.split("");
   return <CharsContainer chars={chars} />;
 }
