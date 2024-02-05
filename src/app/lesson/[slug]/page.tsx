@@ -15,6 +15,5 @@ export default function page({ params }: { params: { slug: string } }) {
   const letters = lessonsList[parseInt(slug)].letters;
   const para = genRandWordsFromStr(letters, 50, 5);
   const chars = para.split("");
-  console.log(chars);
   return <CharsContainer chars={chars} />;
 }
