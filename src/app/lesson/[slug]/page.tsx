@@ -13,6 +13,8 @@ export default function page({ params }: { params: { slug: string } }) {
     const para = lessonsList[parseInt(slug)].letters;
     chars = para.split("");
   } catch (error) {
+    if (slug.startsWith("word"))
+      console.log("working", slug.split("-").slice(1).join("-"));
     return <LessonNotAvailable />;
   }
   return <CharsContainer chars={chars} />;
