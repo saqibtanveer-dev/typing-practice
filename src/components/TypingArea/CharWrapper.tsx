@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import Char from "./Char";
 import {
   addClasses,
@@ -8,6 +8,7 @@ import {
   isKeyAllowed,
   removeClasses,
 } from "@/helper";
+import { MyContext, States } from "@/contextProvds/context";
 
 export default function CharWrapper({
   chars,
@@ -18,10 +19,14 @@ export default function CharWrapper({
   index: number;
   setIndex: React.Dispatch<React.SetStateAction<number>>;
 }) {
+  const { typingAreaFocused } = useContext(States) as MyContext;
+
   useEffect(() => {
     const handleKeyDownEvent = (e: KeyboardEvent) => {
-      e.preventDefault();
+      // e.preventDefault();
       console.log(e.key);
+
+      if (!typingAreaFocused) return;
 
       const isAllowed = isKeyAllowed(e.code);
       if (!isAllowed) return;
@@ -69,7 +74,7 @@ export default function CharWrapper({
     return () => {
       window.removeEventListener("keydown", handleKeyDownEvent);
     };
-  }, [index, setIndex]);
+  }, [index, setIndex, typingAreaFocused]);
 
   return (
     <>
