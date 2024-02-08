@@ -23,7 +23,7 @@ export default function CharWrapper({
 
   useEffect(() => {
     const handleKeyDownEvent = (e: KeyboardEvent) => {
-      // e.preventDefault();
+      e.preventDefault();
 
       if (!typingAreaFocused) return;
 

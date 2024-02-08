@@ -1,10 +1,44 @@
 "use client";
 import { MyContext, States } from "@/contextProvds/context";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
+
+const allowed = [
+  ",",
+  ".",
+  "/",
+  ":",
+  ";",
+  '"',
+  "'",
+  "|",
+  "{",
+  "}",
+  "[",
+  "]",
+  "=",
+  "+",
+  "-",
+  "(",
+  ")",
+  "*",
+  "&",
+  "^",
+  "%",
+  "$",
+  "#",
+  "@",
+  "!",
+  "`",
+  "~",
+  "<",
+  ">",
+  "?",
+];
 
 export default function InputLettersToType() {
   const router = useRouter();
+  const [inputValue, setInputValue] = useState("");
   const { setTypingAreaFocused } = useContext(States) as MyContext;
   function handleSubmit(formData: FormData) {
     const letter = formData.get("genRand");
@@ -18,9 +52,28 @@ export default function InputLettersToType() {
         <label htmlFor="genRand">Generator From Random Letters</label>
         <input
           type="text"
+          value={inputValue}
+          onChange={(e) => {
+            e.preventDefault();
+            setInputValue(() => e.target.value);
+          }}
           onFocus={(e) => {
             e.preventDefault();
             setTypingAreaFocused((pre: boolean) => false);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              document.getElementsByTagName("form")[0].requestSubmit();
+              return;
+            }
+            if (e.key === "Backspace") {
+              setInputValue((pre) => pre.slice(0, pre.length - 1));
+              return;
+            }
+            if (!e.code.startsWith("Key") && !allowed.includes(e.key)) {
+              return;
+            }
+            setInputValue((pre) => pre + e.key);
           }}
           name="genRand"
           placeholder="fj"
