@@ -45,7 +45,6 @@ export function addClasses(elementId, classes) {
 export function removeClasses(elementId, classes) {
   const element = document.getElementById(elementId);
   if (!element) return;
-  console.log(element);
   for (const Class of classes) {
     element.classList.remove(Class);
   }
