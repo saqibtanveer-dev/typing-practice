@@ -3,7 +3,6 @@ import React, { useContext, useEffect } from "react";
 import Char from "./Char";
 import {
   addClasses,
-  checkKey,
   handleBackSpace,
   isKeyAllowed,
   removeClasses,
@@ -27,7 +26,7 @@ export default function CharWrapper({
 
       if (!typingAreaFocused) return;
 
-      const isAllowed = isKeyAllowed(e.code);
+      const isAllowed = isKeyAllowed(e.code, e.key);
       if (!isAllowed) return;
 
       // remove classes from past span

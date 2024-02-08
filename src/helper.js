@@ -1,4 +1,5 @@
 import { faker } from "@faker-js/faker";
+import { allowed } from "./data/helpingData";
 
 export function generateRandomPara() {
   return faker.lorem.paragraph();
@@ -50,13 +51,14 @@ export function removeClasses(elementId, classes) {
   }
 }
 
-export function isKeyAllowed(code) {
+export function isKeyAllowed(code, key) {
   return (
     code === "Backspace" ||
     code.startsWith("Key") ||
     code === "Space" ||
     code === "Minus" ||
-    code === "Semicolon"
+    code === "Semicolon" ||
+    allowed.includes(key)
   );
 }
 
