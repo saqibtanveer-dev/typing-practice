@@ -1,11 +1,19 @@
 "use client";
 import { MyContext, States } from "@/contextProvds/context";
 import React, { useContext } from "react";
+import { useRouter } from "next/navigation";
 
 export default function InputLettersToType() {
+  const router = useRouter();
   const { setTypingAreaFocused } = useContext(States) as MyContext;
+  function handleSubmit(formData: FormData) {
+    const letter = formData.get("genRand");
+    router.push(`/lesson/words-${letter}`);
+    setTypingAreaFocused((pre: boolean) => true);
+    document.getElementsByTagName("input")[0].blur();
+  }
   return (
-    <form action="" className="px-4 mt-16 text-gray-500 font-sans">
+    <form action={handleSubmit} className="px-4 mt-16 text-gray-500 font-sans">
       <div>
         <label htmlFor="genRand">Generator From Random Letters</label>
         <input

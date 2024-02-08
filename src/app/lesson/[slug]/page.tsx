@@ -5,16 +5,23 @@ const CharsContainer = dynamic(() => import("@/components/TypingArea"), {
 
 import { lessonsList } from "@/data/lessonsList";
 import LessonNotAvailable from "@/components/LessonNotAvailable";
+import { genRandWordsFromStr } from "@/helper";
 
 export default function page({ params }: { params: { slug: string } }) {
   const { slug } = params;
   let chars;
+
+  if (slug.startsWith("words")) {
+    const string: string = slug.split("-").slice(1).join("-");
+    const para = genRandWordsFromStr(string, 30, 4);
+    chars = para.split("");
+    return <CharsContainer chars={chars} />;
+  }
+
   try {
     const para = lessonsList[parseInt(slug)].letters;
     chars = para.split("");
   } catch (error) {
-    if (slug.startsWith("word"))
-      console.log("working", slug.split("-").slice(1).join("-"));
     return <LessonNotAvailable />;
   }
   return <CharsContainer chars={chars} />;
