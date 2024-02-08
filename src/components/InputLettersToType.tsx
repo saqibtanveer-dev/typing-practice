@@ -2,39 +2,7 @@
 import { MyContext, States } from "@/contextProvds/context";
 import React, { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
-
-const allowed = [
-  ",",
-  ".",
-  "/",
-  ":",
-  ";",
-  '"',
-  "'",
-  "|",
-  "{",
-  "}",
-  "[",
-  "]",
-  "=",
-  "+",
-  "-",
-  "(",
-  ")",
-  "*",
-  "&",
-  "^",
-  "%",
-  "$",
-  "#",
-  "@",
-  "!",
-  "`",
-  "~",
-  "<",
-  ">",
-  "?",
-];
+import { allowed } from "@/data/helpingData";
 
 export default function InputLettersToType() {
   const router = useRouter();
@@ -70,7 +38,7 @@ export default function InputLettersToType() {
               setInputValue((pre) => pre.slice(0, pre.length - 1));
               return;
             }
-            if (!e.code.startsWith("Key") && !allowed.includes(e.key)) {
+            if (!e.code.startsWith("Key")) {
               return;
             }
             setInputValue((pre) => pre + e.key);
