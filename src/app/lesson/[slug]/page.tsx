@@ -1,10 +1,7 @@
 import dynamic from "next/dynamic";
-const CharsContainer = dynamic(
-  () => import("@/components/TypingArea/CharsContainer"),
-  {
-    ssr: false,
-  }
-);
+const CharsContainer = dynamic(() => import("@/components/TypingArea"), {
+  ssr: false,
+});
 
 import { lessonsList } from "@/data/lessonsList";
 import LessonNotAvailable from "@/components/LessonNotAvailable";
