@@ -1,8 +1,9 @@
 "use client";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Char from "./Char";
 import {
   addClasses,
+  generateRandomPara,
   handleBackSpace,
   isKeyAllowed,
   removeClasses,
@@ -19,10 +20,29 @@ export default function CharWrapper({
   setIndex: React.Dispatch<React.SetStateAction<number>>;
 }) {
   const { typingAreaFocused } = useContext(States) as MyContext;
+  const [charsState, setCharsState] = useState<string[]>(chars);
 
   useEffect(() => {
     const handleKeyDownEvent = (e: KeyboardEvent) => {
       e.preventDefault();
+
+      // insert new data in charsState
+      if (index === charsState.length - 1) {
+        let moreData = generateRandomPara().split("");
+        moreData.unshift(" ");
+        setIndex((pre) => pre - pre);
+        setCharsState((pre) => moreData);
+        for (let i = 0; i < charsState.length; i++) {
+          removeClasses(i + charsState[i], [
+            "text-white",
+            "border-r-2",
+            "border-r-blue-500",
+            "text-red-500",
+            "border-r-2",
+            "border-r-blue-500",
+          ]);
+        }
+      }
 
       if (!typingAreaFocused) return;
 
@@ -30,7 +50,7 @@ export default function CharWrapper({
       if (!isAllowed) return;
 
       // remove classes from past span
-      removeClasses(index - 1 + chars[index - 1], [
+      removeClasses(index - 1 + charsState[index - 1], [
         "border-r-2",
         "border-r-blue-500",
       ]);
@@ -38,8 +58,8 @@ export default function CharWrapper({
       // case 0: key is backspace
       if (e.key === "Backspace") {
         handleBackSpace(
-          index - 1 + chars[index - 1],
-          index - 2 + chars[index - 2]
+          index - 1 + charsState[index - 1],
+          index - 2 + charsState[index - 2]
         );
         if (index <= 0) return;
         setIndex((pre) => pre - 1);
@@ -47,7 +67,7 @@ export default function CharWrapper({
       }
 
       // case 1: right key pressed
-      if (chars[index] === e.key) {
+      if (charsState[index] === e.key) {
         addClasses(index + e.key, [
           "text-white",
           "border-r-2",
@@ -57,8 +77,8 @@ export default function CharWrapper({
       }
 
       // case 2: wrong key pressed
-      if (chars[index] !== e.key) {
-        addClasses(index + chars[index], [
+      if (charsState[index] !== e.key) {
+        addClasses(index + charsState[index], [
           "text-red-500",
           "border-r-2",
           "border-r-blue-500",
@@ -76,8 +96,8 @@ export default function CharWrapper({
 
   return (
     <>
-      {chars &&
-        chars.map((char, i) => (
+      {charsState &&
+        charsState.map((char, i) => (
           <Char id={i + char} key={char + i} char={char} />
         ))}
     </>
