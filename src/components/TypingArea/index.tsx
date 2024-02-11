@@ -3,7 +3,13 @@ import React, { useContext, useState } from "react";
 import CharWrapper from "./CharWrapper";
 import { MyContext, States } from "@/contextProvds/context";
 
-export default function CharsContainer({ chars }: { chars: string[] }) {
+export default function CharsContainer({
+  chars,
+  letterUsedForGenData,
+}: {
+  chars: string[];
+  letterUsedForGenData: string;
+}) {
   const [index, setIndex] = useState<number>(0);
 
   const { setTypingAreaFocused } = useContext(States) as MyContext;
@@ -16,7 +22,13 @@ export default function CharsContainer({ chars }: { chars: string[] }) {
           setTypingAreaFocused((pre: boolean) => true);
         }}
       >
-        <CharWrapper chars={chars} index={index} setIndex={setIndex} />;
+        <CharWrapper
+          chars={chars}
+          index={index}
+          setIndex={setIndex}
+          letterUsedForGenData={letterUsedForGenData}
+        />
+        ;
       </div>
     </>
   );

@@ -3,22 +3,28 @@ import React, { useContext, useEffect, useState } from "react";
 import Char from "./Char";
 import {
   addClasses,
+  genRandWordsFromStr,
   generateRandomPara,
   handleBackSpace,
   isKeyAllowed,
   removeClasses,
 } from "@/helper";
 import { MyContext, States } from "@/contextProvds/context";
+import { faker } from "@faker-js/faker";
+
+type CharWrapperPropsType = {
+  chars: string[];
+  letterUsedForGenData: string;
+  index: number;
+  setIndex: React.Dispatch<React.SetStateAction<number>>;
+};
 
 export default function CharWrapper({
   chars,
+  letterUsedForGenData,
   index,
   setIndex,
-}: {
-  chars: string[];
-  index: number;
-  setIndex: React.Dispatch<React.SetStateAction<number>>;
-}) {
+}: CharWrapperPropsType) {
   const { typingAreaFocused } = useContext(States) as MyContext;
   const [charsState, setCharsState] = useState<string[]>(chars);
 
@@ -28,8 +34,20 @@ export default function CharWrapper({
 
       // insert new data in charsState
       if (index === charsState.length - 1) {
-        let moreData = generateRandomPara().split("");
-        moreData.unshift(" ");
+        let moreData: string[];
+        if (letterUsedForGenData === "faker") {
+          moreData = generateRandomPara().split("");
+          moreData.unshift(" ");
+        } else if (letterUsedForGenData === "faker-words") {
+          moreData = faker.word.words(30).split("");
+          moreData.unshift(" ");
+        } else if (letterUsedForGenData === "faker-sentences") {
+          moreData = faker.lorem.sentences().split("");
+          moreData.unshift(" ");
+        } else {
+          moreData = genRandWordsFromStr(letterUsedForGenData, 30, 4).split("");
+          moreData.unshift(" ");
+        }
         setIndex((pre) => pre - pre);
         setCharsState((pre) => moreData);
         for (let i = 0; i < charsState.length; i++) {

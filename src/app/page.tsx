@@ -10,5 +10,5 @@ const CharsContainer = dynamic(() => import("@/components/TypingArea"), {
 export default function Home() {
   const para = generateRandomPara();
   const chars = para.split("");
-  return <CharsContainer chars={chars} />;
+  return <CharsContainer chars={chars} letterUsedForGenData="faker" />;
 }
