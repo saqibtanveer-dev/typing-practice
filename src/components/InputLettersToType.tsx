@@ -15,9 +15,9 @@ export default function InputLettersToType() {
     document.getElementsByTagName("input")[0].blur();
   }
   return (
-    <form action={handleSubmit} className="px-4 mt-16 text-gray-500 font-sans">
-      <div>
-        <label htmlFor="genRand">Generator From Random Letters</label>
+    <form action={handleSubmit} className="px-4 mt-16 w-screen flex flex-col items-center text-gray-300 font-sans">
+      <div className="max-w-3xl w-full flex flex-col items-center">
+        <label htmlFor="genRand" className="w-full text-center">Generator From Random Letters</label>
         <input
           type="text"
           value={inputValue}
@@ -44,8 +44,8 @@ export default function InputLettersToType() {
             setInputValue((pre) => pre + e.key);
           }}
           name="genRand"
-          placeholder="fj"
-          className="w-full bg-bg-primary text-gray-500 my-2 px-4 py-2 border-b border-red-300 focus:outline-none"
+          placeholder="Generate Random Words"
+          className="w-full  text-slate-400 my-2 px-6 py-3 text-lg bg-white/5 rounded-md outline-none border-none focus:outline-orange-500"
         />
       </div>
     </form>

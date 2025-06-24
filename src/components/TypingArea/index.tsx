@@ -16,7 +16,7 @@ export default function CharsContainer({
   return (
     <>
       <div
-        className="max-w-3xl w-fit h-fit mx-auto dark:bg-bg-secondary dark:text-gray-500 mt-[15%] font-sans text-xl p-8"
+        className="max-w-3xl w-fit h-fit mx-auto dark:bg-bg-secondary dark:text-gray-300 min-h-60 font-sans text-xl p-8 rounded-md"
         onClick={(e) => {
           e.preventDefault();
           setTypingAreaFocused((pre: boolean) => true);

@@ -21,24 +21,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={"dark:bg-bg-primary h-screen" + inter.className}>
+      <body className={"dark:bg-bg-primary " + inter.className}>
         <div className="hidden md:block">
           <AllStates>
             {/* header */}
             <Header />
 
             {/* main */}
-            <main className="h-full max-w-7xl mx-auto flex items-start justify-center gap-primary">
+            <main className="max-w-7xl w-full gap-primary flex flex-col items-center p-8">
               {/* section */}
-              <section className="flex-1 h-full p-8">
+              <section className="flex-1 p-8 w-full flex flex-col items-center">
                 {children}
                 <InputLettersToType />
               </section>
-
-              {/* aside */}
-              <aside className="w-[416px] h-full p-8">
-                <Aside />
-              </aside>
+          <Aside/>
             </main>
           </AllStates>
         </div>
